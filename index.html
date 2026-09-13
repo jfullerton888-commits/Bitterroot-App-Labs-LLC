@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bitterroot App Labs LLC - Feature Selection & Scope Builder</title>
+    <meta name="description" content="Interactive Feature Selection & Scope Builder for premium B2B clients by Bitterroot App Labs LLC." />
+    <meta property="og:title" content="Bitterroot App Labs LLC - Scope Builder" />
+    <meta property="og:description" content="Interactive Feature Selection & Scope Builder for premium B2B clients." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#0f172a" />
+    <link rel="manifest" href="/manifest.json" />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              slate: {
+                950: '#020617',
+              },
+              indigo: {
+                500: '#6366f1',
+                600: '#4f46e5',
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-indigo-500 selection:text-white">
+    <!-- Top Header -->
+    <header class="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-indigo-400 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+            <i data-lucide="layers" class="w-5 h-5 text-white"></i>
+          </div>
+          <div>
+            <h1 class="text-lg font-bold tracking-tight text-white">Bitterroot App Labs LLC</h1>
+            <p class="text-xs text-slate-400 font-medium">B2B Scope & Feature Selection Engine</p>
+          </div>
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="hidden sm:flex items-center space-x-2 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs text-slate-300">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Secure Client Session Active</span>
+          </div>
+          <button id="resetBtn" class="px-3 py-1.5 text-xs font-medium text-slate-400 hover:text-white bg-slate-900/60 hover:bg-slate-800 border border-slate-800 rounded-lg transition-all">
+            Reset Selections
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <!-- Hero Section -->
+      <div class="mb-12 text-center max-w-3xl mx-auto">
+        <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-semibold mb-6">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+          <span>Eliminating Decision Fatigue Before Invoicing</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4">
+          Interactive Scope Builder
+        </h2>
+        <p class="text-base text-slate-400 leading-relaxed">
+          Select all the capabilities your organization requires for your custom deployment. Our all-inclusive flat-rate model guarantees zero scope creep anxiety and zero surprise invoices.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+        <!-- Left 2 Cols: Feature Checklists by Phase -->
+        <div class="lg:col-span-2 space-y-8">
+          <!-- Search & Filter Bar -->
+          <div class="relative">
+            <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500"></i>
+            <input 
+              type="text" 
+              id="searchInput" 
+              placeholder="Search features across phases (e.g. push, offline, chat, analytics)..." 
+              class="w-full pl-11 pr-4 py-3 bg-slate-900/80 border border-slate-800 rounded-xl text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-all shadow-inner"
+            />
+          </div>
+
+          <!-- Phase 1: Core Essentials -->
+          <section class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 backdrop-blur-sm shadow-xl">
+            <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
+              <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold text-sm">
+                  01
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold text-white">Phase 1: Core Essentials</h3>
+                  <p class="text-xs text-slate-400">Foundational architecture & client access controls</p>
+                </div>
+              </div>
+              <span id="phase1-count" class="text-xs font-medium px-2.5 py-1 rounded-full bg-slate-800 text-slate-300">0 selected</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="phase1-container">
+              <!-- Dynamically populated via JS -->
+            </div>
+          </section>
+
+          <!-- Phase 2: Enhanced Interactivity -->
+          <section class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 backdrop-blur-sm shadow-xl">
+            <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
+              <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold text-sm">
+                  02
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold text-white">Phase 2: Enhanced Interactivity</h3>
+                  <p class="text-xs text-slate-400">Real-time engagement & media management modules</p>
+                </div>
+              </div>
+              <span id="phase2-count" class="text-xs font-medium px-2.5 py-1 rounded-full bg-slate-800 text-slate-300">0 selected</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="phase2-container">
+              <!-- Dynamically populated via JS -->
+            </div>
+          </section>
+
+          <!-- Phase 3: Advanced Ecosystem -->
+          <section class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 backdrop-blur-sm shadow-xl">
+            <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
+              <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold text-sm">
+                  03
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold text-white">Phase 3: Advanced Ecosystem</h3>
+                  <p class="text-xs text-slate-400">Enterprise integrations, webhooks & audit compliance</p>
+                </div>
+              </div>
+              <span id="phase3-count" class="text-xs font-medium px-2.5 py-1 rounded-full bg-slate-800 text-slate-300">0 selected</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="phase3-container">
+              <!-- Dynamically populated via JS -->
+            </div>
+          </section>
+        </div>
+
+        <!-- Right Col: Fixed Pricing Summary Card & Actions -->
+        <div class="lg:sticky lg:top-28 space-y-6">
+          <!-- Fixed Pricing Summary Card -->
+          <div class="bg-gradient-to-b from-slate-900 via-slate-900/90 to-slate-950 border-2 border-indigo-500/40 rounded-2xl p-6 shadow-2xl relative overflow-hidden">
+            <div class="absolute -top-24 -right-24 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-400 font-semibold text-xs tracking-wide uppercase">
+                All-Inclusive Guarantee
+              </span>
+              <i data-lucide="check-circle-2" class="w-5 h-5 text-indigo-400"></i>
+            </div>
+
+            <h3 class="text-sm font-medium text-slate-400 mb-1">Project Total</h3>
+            <div class="text-3xl font-extrabold text-white tracking-tight mb-3">
+              $10,000.00 <span class="text-sm font-normal text-slate-400">USD</span>
+            </div>
+            
+            <div class="inline-block px-2.5 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium mb-4">
+              All-Inclusive Flat Rate
+            </div>
+
+            <p class="text-xs text-slate-300 leading-relaxed mb-6 bg-slate-950/60 p-3.5 rounded-xl border border-slate-800/80">
+              You can check as many features as you need from the listed possibilities, and the final price remains exactly <strong class="text-white">$10,000.00 USD</strong> with no hidden fees or variable costs.
+            </p>
+
+            <div class="space-y-3 mb-6 pt-4 border-t border-slate-800/80 text-xs text-slate-400">
+              <div class="flex items-center justify-between">
+                <span>Total Features Selected:</span>
+                <span id="summary-total-selected" class="font-bold text-white">0 / 15</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span>Estimated Timeline:</span>
+                <span class="font-bold text-indigo-300">3 Weeks Rapid Delivery</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span>Dedicated Engineering Lead:</span>
+                <span class="font-bold text-emerald-400">Included</span>
+              </div>
+            </div>
+
+            <div class="space-y-3">
+              <button id="generateSowBtn" class="w-full py-3.5 px-4 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm rounded-xl shadow-lg shadow-indigo-600/30 transition-all flex items-center justify-center space-x-2">
+                <i data-lucide="file-text" class="w-4 h-4"></i>
+                <span>Generate Executive SOW</span>
+              </button>
+              <button id="copyScopeBtn" class="w-full py-3.5 px-4 bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-sm rounded-xl border border-slate-700 transition-all flex items-center justify-center space-x-2">
+                <i data-lucide="copy" class="w-4 h-4"></i>
+                <span>Copy Selected Scope Summary</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Agency Trust Card -->
+          <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 text-xs text-slate-400 space-y-3">
+            <div class="flex items-center space-x-2 text-slate-200 font-semibold">
+              <i data-lucide="award" class="w-4 h-4 text-indigo-400"></i>
+              <span>Bitterroot App Labs Enterprise Promise</span>
+            </div>
+            <p class="leading-relaxed">
+              Every project includes full source code ownership transfer, CI/CD automated deployment pipelines, and 12 months of guaranteed security patches.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- SOW Modal -->
+    <div id="sowModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+        <button id="closeModalBtn" class="absolute top-6 right-6 text-slate-400 hover:text-white p-1 rounded-lg bg-slate-800/60">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+
+        <div class="flex items-center space-x-3 mb-6">
+          <div class="w-10 h-10 rounded-xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center">
+            <i data-lucide="file-check" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-white">Executive Statement of Work (SOW)</h3>
+            <p class="text-xs text-slate-400">Bitterroot App Labs LLC • Flat-Rate Enterprise Agreement</p>
+          </div>
+        </div>
+
+        <div id="sowContent" class="space-y-4 text-sm text-slate-300 mb-6 bg-slate-950/60 p-4 rounded-xl border border-slate-800/80">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="flex items-center justify-end space-x-3 pt-4 border-t border-slate-800">
+          <button id="printSowBtn" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl transition-all">
+            Print / Save PDF
+          </button>
+          <button id="closeModalActionBtn" class="px-5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-xl transition-all shadow-lg shadow-indigo-600/30">
+            Done
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 border border-slate-700 text-white px-4 py-3 rounded-xl shadow-2xl z-50 transform translate-y-20 opacity-0 transition-all duration-300 flex items-center space-x-2 text-sm">
+      <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+      <span id="toastMessage">Action completed successfully</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/80 bg-slate-950 mt-20 py-8 text-center text-xs text-slate-500">
+      <div class="max-w-7xl mx-auto px-4 space-y-2">
+        <p>© 2026 Bitterroot App Labs LLC. All rights reserved. Premium B2B Software Engineering.</p>
+        <p class="text-slate-600">Configured as an installable Progressive Web App (PWA) with offline support.</p>
+      </div>
+    </footer>
+
+    <!-- Vanilla JS Logic -->
+    <script>
+      // Feature Database
+      const featuresData = [
+        // Phase 1: Core Essentials
+        {
+          id: 'push_notifications',
+          phase: 1,
+          title: 'Push Notifications',
+          category: 'Core Essentials',
+          description: 'Instant web and mobile push notifications via Firebase Cloud Messaging with customized alert triggers.',
+          icon: 'bell'
+        },
+        {
+          id: 'offline_support',
+          phase: 1,
+          title: 'Offline Support & Sync',
+          category: 'Core Essentials',
+          description: 'Robust service worker caching and IndexedDB queuing to ensure uninterrupted usability offline.',
+          icon: 'wifi-off'
+        },
+        {
+          id: 'user_profiles',
+          phase: 1,
+          title: 'User Profiles & Auth',
+          category: 'Core Essentials',
+          description: 'Secure authentication, passwordless login, session management, and granular user settings.',
+          icon: 'user-check'
+        },
+        {
+          id: 'secure_encryption',
+          phase: 1,
+          title: 'Secure Data Encryption',
+          category: 'Core Essentials',
+          description: 'End-to-end AES-256 encryption at rest and in transit adhering to strict B2B compliance standards.',
+          icon: 'shield'
+        },
+        {
+          id: 'role_access',
+          phase: 1,
+          title: 'Role-Based Access Controls',
+          category: 'Core Essentials',
+          description: 'Granular permissions defining admin, manager, member, and guest capabilities across the system.',
+          icon: 'lock'
+        },
+
+        // Phase 2: Enhanced Interactivity
+        {
+          id: 'realtime_chat',
+          phase: 2,
+          title: 'Real-time Chat & Messaging',
+          category: 'Enhanced Interactivity',
+          description: 'Instant WebSocket-powered direct messaging and channel discussions with typing indicators.',
+          icon: 'message-square'
+        },
+        {
+          id: 'dynamic_dashboard',
+          phase: 2,
+          title: 'Dynamic Analytics Dashboard',
+          category: 'Enhanced Interactivity',
+          description: 'Interactive Recharts data visualizers, customizable widgets, and real-time metric counters.',
+          icon: 'bar-chart-3'
+        },
+        {
+          id: 'image_uploads',
+          phase: 2,
+          title: 'Image & Document Uploads',
+          category: 'Enhanced Interactivity',
+          description: 'Optimized cloud storage integration with automatic thumbnail generation and drag-and-drop support.',
+          icon: 'upload-cloud'
+        },
+        {
+          id: 'kanban_boards',
+          phase: 2,
+          title: 'Interactive Kanban Boards',
+          category: 'Enhanced Interactivity',
+          description: 'Fluid drag-and-drop task management boards with custom swimlanes and priority tags.',
+          icon: 'kanban'
+        },
+        {
+          id: 'activity_feeds',
+          phase: 2,
+          title: 'Live Activity Feeds',
+          category: 'Enhanced Interactivity',
+          description: 'Chronological timeline of team events, document revisions, and system notifications.',
+          icon: 'activity'
+        },
+
+        // Phase 3: Advanced Ecosystem
+        {
+          id: 'team_management',
+          phase: 3,
+          title: 'Multi-Role Team Management',
+          category: 'Advanced Ecosystem',
+          description: 'Organization hierarchy management, invitation workflows, and multi-tenant isolation.',
+          icon: 'users'
+        },
+        {
+          id: 'advanced_analytics',
+          phase: 3,
+          title: 'Advanced Analytics Engine',
+          category: 'Advanced Ecosystem',
+          description: 'Deep data exports (CSV/PDF), custom date-range filtering, and executive reporting modules.',
+          icon: 'pie-chart'
+        },
+        {
+          id: 'custom_integrations',
+          phase: 3,
+          title: 'Custom API Integrations',
+          category: 'Advanced Ecosystem',
+          description: 'Pre-built connectors for Stripe billing, HubSpot CRM, Slack notifications, and QuickBooks.',
+          icon: 'cpu'
+        },
+        {
+          id: 'enterprise_webhooks',
+          phase: 3,
+          title: 'Enterprise Webhook Subscriptions',
+          category: 'Advanced Ecosystem',
+          description: 'Real-time outbound webhooks for event streaming into customer data warehouses and SIEMs.',
+          icon: 'globe'
+        },
+        {
+          id: 'audit_logging',
+          phase: 3,
+          title: 'Automated Audit Logging',
+          category: 'Advanced Ecosystem',
+          description: 'Immutable security event logs tracking every user action, login attempt, and data modification.',
+          icon: 'file-search'
+        }
+      ];
+
+      // LocalStorage Key
+      const STORAGE_KEY = 'bitterroot_scope_features_v1';
+
+      // Load Saved State or Default to All Checked (since everything is included in $10,000 flat rate!)
+      function loadSelectedFeatures() {
+        try {
+          const saved = localStorage.getItem(STORAGE_KEY);
+          if (saved) {
+            return JSON.parse(saved);
+          }
+        } catch (e) {
+          console.error('Error loading localStorage', e);
+        }
+        // Default: All features selected by default to showcase the complete $10k scope
+        const defaultSelected = {};
+        featuresData.forEach(f => {
+          defaultSelected[f.id] = true;
+        });
+        return defaultSelected;
+      }
+
+      let selectedFeatures = loadSelectedFeatures();
+
+      // Save State
+      function saveSelectedFeatures() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(selectedFeatures));
+        } catch (e) {
+          console.error('Error saving localStorage', e);
+        }
+      }
+
+      // Render Checklists
+      function renderChecklists(filterQuery = '') {
+        const query = filterQuery.toLowerCase().trim();
+
+        const p1Container = document.getElementById('phase1-container');
+        const p2Container = document.getElementById('phase2-container');
+        const p3Container = document.getElementById('phase3-container');
+
+        p1Container.innerHTML = '';
+        p2Container.innerHTML = '';
+        p3Container.innerHTML = '';
+
+        let p1Count = 0;
+        let p2Count = 0;
+        let p3Count = 0;
+        let totalSelected = 0;
+
+        featuresData.forEach(feature => {
+          const matchesQuery = !query || 
+            feature.title.toLowerCase().includes(query) || 
+            feature.description.toLowerCase().includes(query) ||
+            feature.category.toLowerCase().includes(query);
+
+          if (!matchesQuery) return;
+
+          const isChecked = !!selectedFeatures[feature.id];
+          if (isChecked) {
+            totalSelected++;
+            if (feature.phase === 1) p1Count++;
+            if (feature.phase === 2) p2Count++;
+            if (feature.phase === 3) p3Count++;
+          }
+
+          const card = document.createElement('div');
+          card.className = `p-4 rounded-xl border transition-all cursor-pointer flex items-start space-x-3.5 ${
+            isChecked 
+              ? 'bg-indigo-950/20 border-indigo-500/50 shadow-md shadow-indigo-500/5' 
+              : 'bg-slate-950/40 border-slate-800/80 hover:border-slate-700'
+          }`;
+
+          card.innerHTML = `
+            <div class="mt-0.5 flex-shrink-0">
+              <input 
+                type="checkbox" 
+                id="feat-${feature.id}" 
+                value="${feature.id}" 
+                ${isChecked ? 'checked' : ''}
+                class="w-4 h-4 rounded border-slate-700 text-indigo-600 focus:ring-indigo-500 bg-slate-900 cursor-pointer"
+              />
+            </div>
+            <div class="flex-grow">
+              <div class="flex items-center justify-between mb-1">
+                <label for="feat-${feature.id}" class="text-sm font-semibold text-white cursor-pointer select-none">
+                  ${feature.title}
+                </label>
+                <i data-lucide="${feature.icon}" class="w-4 h-4 text-indigo-400"></i>
+              </div>
+              <p class="text-xs text-slate-400 leading-relaxed">${feature.description}</p>
+            </div>
+          `;
+
+          // Click handler to toggle checkbox
+          card.addEventListener('click', (e) => {
+            if (e.target.tagName !== 'INPUT') {
+              const checkbox = card.querySelector('input[type="checkbox"]');
+              checkbox.checked = !checkbox.checked;
+              selectedFeatures[feature.id] = checkbox.checked;
+              saveSelectedFeatures();
+              renderChecklists(searchInput.value);
+              updateSummaryCounts();
+            }
+          });
+
+          const checkbox = card.querySelector('input[type="checkbox"]');
+          checkbox.addEventListener('change', (e) => {
+            selectedFeatures[feature.id] = e.target.checked;
+            saveSelectedFeatures();
+            renderChecklists(searchInput.value);
+            updateSummaryCounts();
+          });
+
+          if (feature.phase === 1) p1Container.appendChild(card);
+          else if (feature.phase === 2) p2Container.appendChild(card);
+          else if (feature.phase === 3) p3Container.appendChild(card);
+        });
+
+        // Update counts
+        document.getElementById('phase1-count').textContent = `${p1Count} selected`;
+        document.getElementById('phase2-count').textContent = `${p2Count} selected`;
+        document.getElementById('phase3-count').textContent = `${p3Count} selected`;
+        document.getElementById('summary-total-selected').textContent = `${totalSelected} / ${featuresData.length}`;
+
+        // Re-initialize Lucide icons for dynamically added elements
+        if (window.lucide) {
+          window.lucide.createIcons();
+        }
+      }
+
+      function updateSummaryCounts() {
+        let total = 0;
+        Object.values(selectedFeatures).forEach(val => {
+          if (val) total++;
+        });
+        document.getElementById('summary-total-selected').textContent = `${total} / ${featuresData.length}`;
+      }
+
+      // Search event listener
+      const searchInput = document.getElementById('searchInput');
+      searchInput.addEventListener('input', (e) => {
+        renderChecklists(e.target.value);
+      });
+
+      // Reset button
+      document.getElementById('resetBtn').addEventListener('click', () => {
+        selectedFeatures = {};
+        featuresData.forEach(f => {
+          selectedFeatures[f.id] = true; // default all checked
+        });
+        saveSelectedFeatures();
+        renderChecklists();
+        showToast('Scope reset to all-inclusive standard configuration');
+      });
+
+      // Toast Notification Helper
+      function showToast(message) {
+        const toast = document.getElementById('toast');
+        const toastMsg = document.getElementById('toastMessage');
+        toastMsg.textContent = message;
+        toast.classList.remove('translate-y-20', 'opacity-0');
+        setTimeout(() => {
+          toast.classList.add('translate-y-20', 'opacity-0');
+        }, 3000);
+      }
+
+      // Copy Scope Summary Button
+      document.getElementById('copyScopeBtn').addEventListener('click', () => {
+        const activeFeatures = featuresData.filter(f => selectedFeatures[f.id]);
+        const summaryText = 
+          `Bitterroot App Labs LLC - Executive Scope Summary\n` +
+          `Project Total: $10,000.00 USD (All-Inclusive Flat Rate)\n` +
+          `Selected Features (${activeFeatures.length}/${featuresData.length}):\n` +
+          activeFeatures.map(f => `- [x] ${f.title} (${f.category})`).join('\n') +
+          `\n\nAll features included under flat rate with 3-week rapid delivery and 12-month support.`;
+
+        navigator.clipboard.writeText(summaryText).then(() => {
+          showToast('Scope summary copied to clipboard!');
+        }).catch(() => {
+          showToast('Failed to copy to clipboard');
+        });
+      });
+
+      // SOW Modal logic
+      const sowModal = document.getElementById('sowModal');
+      const generateSowBtn = document.getElementById('generateSowBtn');
+      const closeModalBtn = document.getElementById('closeModalBtn');
+      const closeModalActionBtn = document.getElementById('closeModalActionBtn');
+      const printSowBtn = document.getElementById('printSowBtn');
+      const sowContent = document.getElementById('sowContent');
+
+      generateSowBtn.addEventListener('click', () => {
+        const activeFeatures = featuresData.filter(f => selectedFeatures[f.id]);
+        
+        let html = `
+          <div class="space-y-3">
+            <div class="flex justify-between items-center pb-3 border-b border-slate-800">
+              <span class="text-xs text-slate-400">Agreement Type:</span>
+              <span class="text-xs font-semibold text-white">All-Inclusive Fixed Fee ($10,000.00 USD)</span>
+            </div>
+            <div class="flex justify-between items-center pb-3 border-b border-slate-800">
+              <span class="text-xs text-slate-400">Delivery Window:</span>
+              <span class="text-xs font-semibold text-indigo-300">3 Weeks Rapid Delivery</span>
+            </div>
+            <div>
+              <h4 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Included Feature Scope (${activeFeatures.length} Modules):</h4>
+              <ul class="space-y-2 max-h-48 overflow-y-auto pr-2">
+        `;
+
+        activeFeatures.forEach(f => {
+          html += `
+            <li class="flex items-start space-x-2 text-xs">
+              <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400 mt-0.5 flex-shrink-0"></i>
+              <div>
+                <strong class="text-white">${f.title}</strong>
+                <span class="text-slate-400 ml-1">(${f.category})</span>
+              </div>
+            </li>
+          `;
+        });
+
+        html += `
+              </ul>
+            </div>
+            <div class="pt-3 border-t border-slate-800 text-xs text-slate-400">
+              <p>Guaranteed Zero Scope Creep, Full IP Transfer, and 12-Month Maintenance Included.</p>
+            </div>
+          </div>
+        `;
+
+        sowContent.innerHTML = html;
+        sowModal.classList.remove('hidden');
+        if (window.lucide) window.lucide.createIcons();
+      });
+
+      closeModalBtn.addEventListener('click', () => {
+        sowModal.classList.add('hidden');
+      });
+
+      closeModalActionBtn.addEventListener('click', () => {
+        sowModal.classList.add('hidden');
+      });
+
+      printSowBtn.addEventListener('click', () => {
+        window.print();
+      });
+
+      // Register Service Worker for PWA
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('Service Worker registered successfully:', reg.scope))
+            .catch(err => console.log('Service Worker registration failed:', err));
+        });
+      }
+
+      // Initial render on load
+      document.addEventListener('DOMContentLoaded', () => {
+        renderChecklists();
+      });
+    </script>
+  </body>
+</html>

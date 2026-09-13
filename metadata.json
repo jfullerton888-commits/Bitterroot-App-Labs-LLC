@@ -1,0 +1,6 @@
+{
+  "name": "Bitterroot App Labs LLC - Scope Builder",
+  "description": "Interactive Feature Selection & Scope Builder for premium B2B clients.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
